@@ -4,7 +4,7 @@ __pycache__/
 *.pyo
 *$py.class
 
-# Ignore all .DS_Store (specific to macOS)
+# Ignore all .DS_Store
 .DS_Store
 
 # Ignore .pytest_cache for Python testing
