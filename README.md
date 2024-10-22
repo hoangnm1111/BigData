@@ -50,14 +50,14 @@ Mô tả các cột dữ liệu:
   
       - Y = Lưu và chuyển tiếp chuyến đi
       - N = Không lưu và chuyển tiếp chuyến đi
-    - Payment_type: Cách hành khách thanh toán cho chuyến đi, được đại diện bởi một mã số.
+  - Payment_type: Cách hành khách thanh toán cho chuyến đi, được đại diện bởi một mã số.
   
-      - 1 = Thẻ tín dụng
-      - 2 = Tiền mặt
-      - 3 = Không tính phí
-      - 4 = Tranh chấp
-      - 5 = Không rõ
-      - 6 = Hủy chuyến đi
+    - 1 = Thẻ tín dụng
+    - 2 = Tiền mặt
+    - 3 = Không tính phí
+    - 4 = Tranh chấp
+    - 5 = Không rõ
+    - 6 = Hủy chuyến đi
   - Fare_amount: Số tiền vé được tính dựa trên thời gian và khoảng cách.
   
   - Extra: Các khoản phí bổ sung, hiện bao gồm phí $0,50 và $1 vào giờ cao điểm và ban đêm.
