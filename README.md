@@ -76,3 +76,9 @@ Các thành phần chính:
 
   Mở trình duyệt web và truy cập http://localhost:3000. Đăng nhập bằng thông tin bạn đã cung cấp trong tệp .env.
 
+## Các công việc đã làm:
+1. Xây dựng hoàn chỉnh toàn bộ hệ thống với Docker
+![image](https://github.com/user-attachments/assets/ab2b31bc-7621-44c0-a0e5-03157b9ac67d)
+
+
+
