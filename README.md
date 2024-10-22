@@ -22,55 +22,55 @@ Bộ dữ liệu này là một hồ sơ chi tiết về sự di chuyển đô t
 
 Mô tả các cột dữ liệu:
 
-VendorID: Mã nhận dạng của nhà cung cấp TPEP cung cấp bản ghi.
+  - VendorID: Mã nhận dạng của nhà cung cấp TPEP cung cấp bản ghi.
 
-1 = Creative Mobile Technologies, LLC
-2 = VeriFone Inc.
-tpep_pickup_datetime: Ngày và giờ khi đồng hồ tính tiền được kích hoạt.
+      - 1 = Creative Mobile Technologies, LLC
+      - 2 = VeriFone Inc.
+  - tpep_pickup_datetime: Ngày và giờ khi đồng hồ tính tiền được kích hoạt.
 
-tpep_dropoff_datetime: Ngày và giờ khi đồng hồ tính tiền được tắt.
+  - tpep_dropoff_datetime: Ngày và giờ khi đồng hồ tính tiền được tắt.
 
-Passenger_count: Số lượng hành khách trên xe, được nhập bởi tài xế.
+  - Passenger_count: Số lượng hành khách trên xe, được nhập bởi tài xế.
 
-Trip_distance: Khoảng cách chuyến đi tính bằng dặm, được ghi lại bởi đồng hồ tính tiền.
+  - Trip_distance: Khoảng cách chuyến đi tính bằng dặm, được ghi lại bởi đồng hồ tính tiền.
 
-PULocationID: Mã vùng của Ủy ban Taxi và Limousine (TLC) nơi đồng hồ tính tiền được kích hoạt.
+  - PULocationID: Mã vùng của Ủy ban Taxi và Limousine (TLC) nơi đồng hồ tính tiền được kích hoạt.
 
-DOLocationID: Mã vùng của TLC nơi đồng hồ tính tiền được tắt.
+  - DOLocationID: Mã vùng của TLC nơi đồng hồ tính tiền được tắt.
 
-RateCodeID: Mã giá cước áp dụng vào cuối chuyến đi.
+  - RateCodeID: Mã giá cước áp dụng vào cuối chuyến đi.
 
-1 = Giá chuẩn
-2 = JFK
-3 = Newark
-4 = Nassau hoặc Westchester
-5 = Giá thương lượng
-6 = Chuyến đi ghép
-Store_and_fwd_flag: Cho biết liệu bản ghi chuyến đi có được lưu trữ trong bộ nhớ của xe trước khi truyền về nhà cung cấp do không có kết nối máy chủ hay không.
-
-Y = Lưu và chuyển tiếp chuyến đi
-N = Không lưu và chuyển tiếp chuyến đi
-Payment_type: Cách hành khách thanh toán cho chuyến đi, được đại diện bởi một mã số.
-
-1 = Thẻ tín dụng
-2 = Tiền mặt
-3 = Không tính phí
-4 = Tranh chấp
-5 = Không rõ
-6 = Hủy chuyến đi
-Fare_amount: Số tiền vé được tính dựa trên thời gian và khoảng cách.
-
-Extra: Các khoản phí bổ sung, hiện bao gồm phí $0,50 và $1 vào giờ cao điểm và ban đêm.
-
-MTA_tax: Thuế $0,50 tự động được cộng vào dựa trên giá vé đã tính.
-
-Improvement_surcharge: Phí phụ thu $0,30 được cộng vào khi bắt đầu chuyến đi, được áp dụng từ năm 2015.
-
-Tip_amount: Tiền tip qua thẻ tín dụng. (Lưu ý: Tiền tip bằng tiền mặt không được ghi lại ở đây.)
-
-Tolls_amount: Tổng số tiền phí cầu đường phải trả trong chuyến đi.
-
-Total_amount: Tổng số tiền mà hành khách phải trả, không bao gồm tiền tip bằng tiền mặt.
+      - 1 = Giá chuẩn
+      - 2 = JFK
+      - 3 = Newark
+      - 4 = Nassau hoặc Westchester
+      - 5 = Giá thương lượng
+      - 6 = Chuyến đi ghép
+  - Store_and_fwd_flag: Cho biết liệu bản ghi chuyến đi có được lưu trữ trong bộ nhớ của xe trước khi truyền về nhà cung cấp do không có kết nối máy chủ hay không.
+  
+      - Y = Lưu và chuyển tiếp chuyến đi
+      - N = Không lưu và chuyển tiếp chuyến đi
+    - Payment_type: Cách hành khách thanh toán cho chuyến đi, được đại diện bởi một mã số.
+  
+      - 1 = Thẻ tín dụng
+      - 2 = Tiền mặt
+      - 3 = Không tính phí
+      - 4 = Tranh chấp
+      - 5 = Không rõ
+      - 6 = Hủy chuyến đi
+  - Fare_amount: Số tiền vé được tính dựa trên thời gian và khoảng cách.
+  
+  - Extra: Các khoản phí bổ sung, hiện bao gồm phí $0,50 và $1 vào giờ cao điểm và ban đêm.
+  
+  - MTA_tax: Thuế $0,50 tự động được cộng vào dựa trên giá vé đã tính.
+  
+  - Improvement_surcharge: Phí phụ thu $0,30 được cộng vào khi bắt đầu chuyến đi, được áp dụng từ năm 2015.
+  
+  - Tip_amount: Tiền tip qua thẻ tín dụng. (Lưu ý: Tiền tip bằng tiền mặt không được ghi lại ở đây.)
+  
+  - Tolls_amount: Tổng số tiền phí cầu đường phải trả trong chuyến đi.
+  
+  - Total_amount: Tổng số tiền mà hành khách phải trả, không bao gồm tiền tip bằng tiền mặt.
 
 ## Mục tiêu của hệ thống:
 
