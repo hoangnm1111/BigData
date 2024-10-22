@@ -18,7 +18,7 @@ Nhóm: 8
 Hệ thống phân tích các thông tin về giá taxi tại New York (dựa trên tập dataset Newyork Taxi Trip Data được cung cấp bởi  Ủy ban Taxi và Limousine Thành phố New York). Dự án được thiết kế để xử lý lượng lớn thông tin về các chuyến taxi (giá cả, quãng đường di chuyển, ...) bằng cách sử dụng các framework big data như Kafka, Spark.
 
 # Giới thiệu dataset:
-Bộ dữ liệu này là một hồ sơ chi tiết về sự di chuyển đô thị, ghi lại những thông tin chi tiết về mỗi chuyến đi taxi. Từ các điểm dữ liệu thời gian như thời gian đón và thả khách cho đến các khía cạnh không gian liên quan đến vị trí, dữ liệu này cung cấp một cái nhìn chi tiết về các mô hình giao thông đô thị.
+Bộ dữ liệu này là một hồ sơ chi tiết về sự di chuyển đô thị, ghi lại những thông tin chi tiết về mỗi chuyến đi taxi. Từ các điểm dữ liệu thời gian như thời gian đón và thả khách cho đến các khía cạnh không gian liên quan đến vị trí, dữ liệu này cung cấp một cái nhìn chi tiết về các mô hình giao thông đô thị. Dataset bao gồm 19 thuộc tính và hơn 7 triệu dòng.
 
 Mô tả các cột dữ liệu:
 
