@@ -26,3 +26,4 @@ RUN chmod +x /wait-for-it.sh
 
 # Copy Kafka configuration and producer script into the image
 COPY kafka_producer.py /app/kafka_producer.py
+COPY yellow_tripdata_2019-01.csv /app/yellow_tripdata_2019-01.csv
