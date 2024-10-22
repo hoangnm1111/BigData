@@ -95,5 +95,8 @@ Gồm 6 container:
 
   - real-time-data-processing-database-1: Đây là container chạy MySQL, đóng vai trò như cơ sở dữ liệu lưu trữ dữ liệu đã được xử lý và có thể được truy vấn bởi Grafana để hiển thị thông tin.
 
-
+## TODO:
+1. Xây dựng chương trình xử lý dữ liệu từ Kafka với Spark
+2. Đưa dữ liệu vào MySQL
+3. Cấu hình grafana, xây dựng dashboard để trực quan hóa dữ liệu.
 
