@@ -74,5 +74,5 @@ Các thành phần chính:
 
 2. Truy cập giao diện Grafana:
 
-  Mở trình duyệt web và truy cập http://localhost:3000. Đăng nhập bằng thông tin quản trị viên bạn đã cung cấp trong tệp .env.
+  Mở trình duyệt web và truy cập http://localhost:3000. Đăng nhập bằng thông tin bạn đã cung cấp trong tệp .env.
 
