@@ -9,23 +9,23 @@ import requests
 import kafka
 from kafka import KafkaProducer
 from kafka.errors import NoBrokersAvailable
+import pandas as pd
+
 
 # Configure logging to display messages at INFO level and above
 LOGGING_LEVEL = os.getenv('LOGGING_LEVEL', 'INFO')
 logging.basicConfig(level=LOGGING_LEVEL, format='%(asctime)s - %(levelname)s - %(message)s', 
                     datefmt='%Y-%m-%d %H:%M:%S')
-
+#KAFKA_TOPIC = os.getenv('KAFKA_TOPIC', 'stock_prices')
 # Set Kafka related logs to WARNING to reduce output verbosity
 logging.getLogger('kafka').setLevel(LOGGING_LEVEL)
 
 # Constants
-API_KEY = os.getenv('API_KEY')
-# Fetch the stock symbols from the environment variable and split it into a list
-STOCK_SYMBOLS = os.getenv('STOCK_SYMBOLS', 'AAPL').split(',')
-# Generate the list of URLs for each stock symbol
-URLS = [f'https://financialmodelingprep.com/api/v3/quote/{symbol}?apikey={API_KEY}' for symbol in STOCK_SYMBOLS]
+CSV_FILE_PATH = os.getenv('CSV_FILE_PATH', '/app/yellow_tripdata_2019-01.csv')
+CHUNK_SIZE = int(os.getenv('CHUNK_SIZE', '100'))
 
-KAFKA_TOPIC = os.getenv('KAFKA_TOPIC', 'stock_prices')
+
+KAFKA_TOPIC = os.getenv('KAFKA_TOPIC', 'taxi_data')
 KAFKA_SERVER = os.getenv('KAFKA_SERVER', 'kafka_broker:29092')
 MAX_RETRIES = int(os.getenv('KAFKA_MAX_RETRIES', '5'))
 RETRY_DELAY = int(os.getenv('KAFKA_RETRY_DELAY', '2'))
@@ -33,9 +33,6 @@ RETRY_DELAY = int(os.getenv('KAFKA_RETRY_DELAY', '2'))
 # Log the config variables
 logging.info(f'Kafka-Python package version: {kafka.__version__}')
 
-api_key_log = "set" if API_KEY else "not set"
-logging.info(f"API_KEY is {api_key_log}.")
-logging.info(f"STOCK_SYMBOL: {STOCK_SYMBOLS}")
 
 logging.info(f"KAFKA_SERVER: {KAFKA_SERVER}, KAFKA_TOPIC: {KAFKA_TOPIC}")
 
@@ -68,34 +65,34 @@ for attempt in range(MAX_RETRIES):
 # Rest of the producer code
 logging.info(f"Producer config: {producer.config}")
 
-def fetch_stock_data(url):
-    """
-    Fetch stock data from the API.
-    """
+def fetch_stock_data_from_csv(file_path, chunk_size):
     try:
-        response = requests.get(url)
-        response.raise_for_status()  # Will raise an HTTP Error if the HTTP request returned an unsuccessful status code
-        return response.json()
-    except requests.exceptions.HTTPError as http_err:
-        logging.error(f'HTTP error occurred: {http_err}')
+        chunk_iter = pd.read_csv(file_path, chunksize=chunk_size)
+        return chunk_iter
     except Exception as err:
-        logging.error(f'An error occurred: {err}')
+        logging.error(f'An error occurred while reading CSV file: {err}')
+        return None
 
-# Continuously fetch and send data
-while True:
-    logging.info("Current environment:", dict(os.environ))
 
-    for url, symbol in zip(URLS, STOCK_SYMBOLS):
-        stock_data = fetch_stock_data(url)
+# Main loop
+chunk_iter = fetch_stock_data_from_csv(CSV_FILE_PATH, CHUNK_SIZE)
 
-        if stock_data:
-            try:
-                # Add stock symbol to the data
-                stock_data[0]['symbol'] = symbol  # Assuming the API returns a list with a single dictionary
-                producer.send(KAFKA_TOPIC, value=stock_data[0])
-                logging.info(f"Fetched and sent data for {symbol}: {stock_data}")
-            except Exception as e:
-                logging.error(f"An error occurred while sending data to Kafka for {symbol}: {e}")
+if chunk_iter:
+    while True:
+        try:
+            for chunk in chunk_iter:
+                for _, row in chunk.iterrows():
+                    stock_data = row.to_dict()  # Convert each row to dictionary
+                    try:
+                        producer.send(KAFKA_TOPIC, value=stock_data)
+                        logging.info(f"Sent data to Kafka: {stock_data}")
+                    except Exception as e:
+                        logging.error(f"An error occurred while sending data to Kafka: {e}")
 
-    # Sleep for 60 seconds after each request to rate limit API calls
-    time.sleep(60)
+                time.sleep(60)  # Sleep to simulate real-time data
+
+            chunk_iter = fetch_stock_data_from_csv(CSV_FILE_PATH, CHUNK_SIZE)  # Restart when finished
+
+        except StopIteration:
+            logging.info("Finished reading the CSV file.")
+            break
