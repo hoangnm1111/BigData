@@ -77,8 +77,23 @@ Các thành phần chính:
   Mở trình duyệt web và truy cập http://localhost:3000. Đăng nhập bằng thông tin bạn đã cung cấp trong tệp .env.
 
 ## Các công việc đã làm:
+
 1. Xây dựng hoàn chỉnh toàn bộ hệ thống với Docker
+
+Gồm 6 container:
 ![image](https://github.com/user-attachments/assets/ab2b31bc-7621-44c0-a0e5-03157b9ac67d)
+
+  - real-time-data-processing-spark-1: Container chạy Apache Spark, dùng để xử lý dữ liệu streaming theo thời gian thực. Spark sẽ xử lý các dữ liệu nhận được từ Kafka hoặc các nguồn khác và thực hiện các tác vụ tính toán.
+
+  - real-time-data-processing-kafka_producer-1: Container Kafka producer, được sử dụng để gửi dữ liệu vào Kafka topic. Dữ liệu này sau đó sẽ được xử lý bởi Spark.
+
+  - real-time-data-processing-grafana-1: Container chạy Grafana. Nó sẽ kết nối với cơ sở dữ liệu MySQL để hiển thị các biểu đồ và số liệu thời gian thực từ dữ liệu đã được xử lý.
+
+  - real-time-data-processing-kafka_broker-1: Container Kafka broker, chịu trách nhiệm nhận và lưu trữ các thông điệp từ các Kafka producer và phân phối chúng tới các Kafka consumer như Spark.
+
+  - real-time-data-processing-zookeeper-1: Container chạy Zookeeper, cung cấp dịch vụ quản lý cluster cho Kafka broker, giữ vai trò đồng bộ và theo dõi trạng thái của các broker trong hệ thống.
+
+  - real-time-data-processing-database-1: Đây là container chạy MySQL, đóng vai trò như cơ sở dữ liệu lưu trữ dữ liệu đã được xử lý và có thể được truy vấn bởi Grafana để hiển thị thông tin.
 
 
 
